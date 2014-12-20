@@ -6,6 +6,7 @@ LED Strip controlled via Arduino and Capacitive Touch Sensor
 
 * Arduino Uno or Equivalent
 * [Arduino Software](http://arduino.cc/en/Main/Software)
+* [CapacitiveSensor Library](https://github.com/PaulStoffregen/CapacitiveSensor)
 * 1 x 12v RGBW LED Strip
 * 1 x 12v DC Wall Adaptor
 * 1 x DC Power Jack
