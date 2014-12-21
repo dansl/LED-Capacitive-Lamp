@@ -13,6 +13,9 @@ const int LEDWhite = 11;
 
 const int MaxLEDBrightness = 255;
 
+//Inital White Brightness
+int WhiteBrightness = 100;
+
 int LEDBrightnessAndDirection[4][2] = {
   {0,1}, //Red
   {0,1}, //Green
@@ -52,11 +55,6 @@ void setup() {
    pinMode(LEDBlue, OUTPUT);
    pinMode(LEDGreen, OUTPUT);
    pinMode(LEDWhite, OUTPUT);
-   
-   //Inital White Brightness
-   int WhiteBrightness = 50;
-   
-   analogWrite(LEDWhite, WhiteBrightness);
 }
 
 void loop() {
@@ -129,6 +127,7 @@ void loop() {
     analogWrite(LEDRed, LEDBrightnessAndDirection[0][0]);
     analogWrite(LEDGreen, LEDBrightnessAndDirection[1][0]);
     analogWrite(LEDBlue, LEDBrightnessAndDirection[2][0]);
+    analogWrite(LEDWhite, WhiteBrightness);
   }else{
     analogWrite(LEDRed, 0);
     analogWrite(LEDGreen, 0);
