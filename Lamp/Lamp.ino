@@ -13,15 +13,15 @@ const int LEDWhite = 11;
 
 const int MaxLEDBrightness = 255;
 
-//Inital White Brightness
-int WhiteBrightness = 100;
-
 int LEDBrightnessAndDirection[4][2] = {
   {0,1}, //Red
   {0,1}, //Green
   {0,1}, //Blue
   {0,1}  //white
 };
+
+int LEDWhiteBrightnessSettings[5] = {0,64,128,192,255};
+int CurWhiteSetting = 0;
 
 int CurColor = 0; 
 int PrevColor = -1;
@@ -31,7 +31,7 @@ boolean RainbowMode = true;
 ///// END/////
 
 ///// CAPACITIVE STUFF/////
-CapacitiveSensor   Main_CS = CapacitiveSensor(7,2);        // 10M resistor between pins 7 & 2, pin 2 is sensor pin, add a wire and or foil if desired
+CapacitiveSensor   Main_CS = CapacitiveSensor(7,12);        // 10M resistor between pins 7 & 12, pin 12 is sensor pin, add a wire and or foil if desired
 
 int TapHoldCounter[2]; //Stores the value of the capacitive connection, and if we are testing for a tap or not.
 int TapDelay = 40; //amount of loops to wait till we determin if it was a hold.
@@ -82,6 +82,8 @@ void loop() {
       
       if(TouchMode == 1){
         Serial.println("Double Tapped");
+        CurWhiteSetting++;
+        CurWhiteSetting %= 5;
         DblTapCounterStart = false;
         DblTapCounter = 0;
         TouchMode = 0;
@@ -127,7 +129,7 @@ void loop() {
     analogWrite(LEDRed, LEDBrightnessAndDirection[0][0]);
     analogWrite(LEDGreen, LEDBrightnessAndDirection[1][0]);
     analogWrite(LEDBlue, LEDBrightnessAndDirection[2][0]);
-    analogWrite(LEDWhite, WhiteBrightness);
+    analogWrite(LEDWhite, LEDWhiteBrightnessSettings[CurWhiteSetting]);
   }else{
     analogWrite(LEDRed, 0);
     analogWrite(LEDGreen, 0);
