@@ -31,7 +31,7 @@ boolean RainbowMode = true;
 ///// END/////
 
 ///// CAPACITIVE STUFF/////
-CapacitiveSensor   Main_CS = CapacitiveSensor(7,12);        // 10M resistor between pins 7 & 12, pin 12 is sensor pin, add a wire and or foil if desired
+CapacitiveSensor   Main_CS = CapacitiveSensor(13,12);        // 10M resistor between pins 13 & 12, pin 12 is sensor pin
 
 int TapHoldCounter[2]; //Stores the value of the capacitive connection, and if we are testing for a tap or not.
 int TapDelay = 40; //amount of loops to wait till we determin if it was a hold.
