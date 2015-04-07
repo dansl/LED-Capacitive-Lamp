@@ -1,6 +1,6 @@
-# README #
+# LED Capacitive Lamp #
 
-LED Strip controlled via Arduino and Capacitive Touch Sensor
+12v RGBW LED Strip controlled via Arduino and Capacitive Touch Sensor Library
 
 ### How do I get set up? ###
 
@@ -9,7 +9,6 @@ LED Strip controlled via Arduino and Capacitive Touch Sensor
 * [CapacitiveSensor Library](https://github.com/PaulStoffregen/CapacitiveSensor)
 * 1 x 12v RGBW LED Strip
 * 1 x 12v DC Wall Adaptor
-* 1 x DC Power Jack
 * 4 x NPN TIP120 Transistor
 * 1 x 1K Resistor
 
