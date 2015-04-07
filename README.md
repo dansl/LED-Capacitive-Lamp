@@ -12,3 +12,5 @@ LED Strip controlled via Arduino and Capacitive Touch Sensor
 * 1 x DC Power Jack
 * 4 x NPN TIP120 Transistor
 * 1 x 1K Resistor
+
+![LED Lamp Cap_bb.png](https://bitbucket.org/repo/benEg5/images/1231881544-LED%20Lamp%20Cap_bb.png)
