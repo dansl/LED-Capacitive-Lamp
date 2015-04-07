@@ -26,7 +26,7 @@ int CurWhiteSetting = 0;
 int CurColor = 2; 
 int PrevColor = -1;
     
-int FadeSpeed = 100; //Speed that the light will fade in miliseconds
+int FadeSpeed = 50; //Speed that the light will fade in miliseconds
 boolean RainbowMode = true;
 ///// END/////
 
@@ -39,6 +39,10 @@ int TapDelay = 1000 / FadeSpeed; //amount of loops to wait till we determin if i
 boolean DblTapCounterStart = false;
 int DblTapTime = 250 / FadeSpeed; //Divide by fade speed, because that is whats delaying the loop
 int DblTapCounter = 0;
+
+boolean blinkIt = false;
+int blinkItCounter = 0;
+int blinkItDelay = 250 / FadeSpeed;
 
 boolean WaitForStopHold = false;
 ///// END /////
@@ -63,6 +67,8 @@ void loop() {
   
   long MainCap =  Main_CS.capacitiveSensor(30); //Inialize Capacitive Sensor
   
+  Serial.println(MainCap);
+  
   int TouchMode = checkTapHold(MainCap); //Detect Tap vs Hold
   
   ///// Double Tap checker //////
@@ -79,7 +85,12 @@ void loop() {
       if(TouchMode == 1){
         Serial.println("Double Tapped");
         
-        RainbowMode = !RainbowMode;
+        if(RainbowMode){
+          RainbowMode = false;
+        }else{
+          RainbowMode = true;
+        }
+        blinkIt = true;
         
         DblTapCounterStart = false;
         DblTapCounter = 0;
@@ -137,6 +148,18 @@ void loop() {
     analogWrite(LEDGreen, 0);
     analogWrite(LEDBlue, 0);
     analogWrite(LEDWhite, 0);
+  }
+  
+  if(blinkIt){
+      analogWrite(LEDRed, 0);
+      analogWrite(LEDGreen, 0);
+      analogWrite(LEDBlue, 0);
+      analogWrite(LEDWhite, 0);
+      blinkItCounter++;
+  }
+  if(blinkItCounter > blinkItDelay){
+    blinkItCounter = 0;
+    blinkIt = false;
   }
   
   //Serial.println(millis() - start);// check on performance in milliseconds 
