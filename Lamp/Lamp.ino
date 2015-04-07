@@ -20,13 +20,13 @@ int LEDBrightnessAndDirection[4][2] = {
   {0,1}  //white
 };
 
-int LEDWhiteBrightnessSettings[5] = {0,64,128,192,255};
+int LEDWhiteBrightnessSettings[5] = {5,64,128,192,255};
 int CurWhiteSetting = 0;
 
-int CurColor = 0; 
+int CurColor = 2; 
 int PrevColor = -1;
     
-int FadeSpeed = 10; //Speed that the light will fade in miliseconds
+int FadeSpeed = 100; //Speed that the light will fade in miliseconds
 boolean RainbowMode = true;
 ///// END/////
 
@@ -34,10 +34,10 @@ boolean RainbowMode = true;
 CapacitiveSensor   Main_CS = CapacitiveSensor(13,12);        // 10M resistor between pins 13 & 12, pin 12 is sensor pin
 
 int TapHoldCounter[2]; //Stores the value of the capacitive connection, and if we are testing for a tap or not.
-int TapDelay = 40; //amount of loops to wait till we determin if it was a hold.
+int TapDelay = 1000 / FadeSpeed; //amount of loops to wait till we determin if it was a hold.
 
 boolean DblTapCounterStart = false;
-int DblTapTime = 1000 / FadeSpeed; //Divide by fade speed, because that is whats delaying the loop
+int DblTapTime = 250 / FadeSpeed; //Divide by fade speed, because that is whats delaying the loop
 int DblTapCounter = 0;
 
 boolean WaitForStopHold = false;
@@ -67,10 +67,7 @@ void loop() {
   
   ///// Double Tap checker //////
   if(!WaitForStopHold){
-    if(TouchMode == 1){
-      Serial.println("Tapped");
-      RainbowMode = !RainbowMode;
-    }else if(TouchMode == 2){
+    if(TouchMode == 2){
       Serial.println("Hold");
       LampPower = !LampPower;
       WaitForStopHold = true;
@@ -81,14 +78,20 @@ void loop() {
       
       if(TouchMode == 1){
         Serial.println("Double Tapped");
-        CurWhiteSetting++;
-        CurWhiteSetting %= 5;
+        
+        RainbowMode = !RainbowMode;
+        
         DblTapCounterStart = false;
         DblTapCounter = 0;
         TouchMode = 0;
       }
       
       if(DblTapCounter > DblTapTime){
+        Serial.println("Tapped");
+      
+        CurWhiteSetting++;
+        CurWhiteSetting %= 5;
+        
         DblTapCounterStart = false;
         DblTapCounter = 0;
       }
