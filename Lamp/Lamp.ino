@@ -61,10 +61,9 @@ void loop() {
   //For testing the performance of our program
   long start = millis();
   
-  
   long MainCap =  Main_CS.capacitiveSensor(30); //Inialize Capacitive Sensor
   
-  boolean TouchMode = checkTapHold(MainCap); //Detect Tap vs Hold
+  int TouchMode = checkTapHold(MainCap); //Detect Tap vs Hold
   
   ///// Double Tap checker //////
   if(!WaitForStopHold){
@@ -99,7 +98,7 @@ void loop() {
       DblTapCounterStart = true;
     }
   }else{
-    //This is so if they help to turn off the lamp, we want to wait till they let go before testing for taps again
+    //This is so if they turn off the lamp, we want to wait till they let go before testing for taps again
     if(TouchMode == 0){
       WaitForStopHold = false;
     }
