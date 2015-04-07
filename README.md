@@ -12,4 +12,6 @@
 * 4 x NPN TIP120 Transistor
 * 1 x 1K Resistor
 
+More info can also be found [Here](http://playground.arduino.cc/Main/CapacitiveSensor?from=Main.CapSense)
+
 ![LED Lamp Cap_bb.png](https://bitbucket.org/repo/benEg5/images/1231881544-LED%20Lamp%20Cap_bb.png)
