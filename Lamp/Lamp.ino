@@ -21,9 +21,9 @@ int LEDBrightnessAndDirection[4][2] = {
 };
 
 int LEDWhiteBrightnessSettings[5] = {5,64,128,192,255};
-int CurWhiteSetting = 0;
+int CurWhiteSetting = 1;
 
-int CurColor = 2; 
+int CurColor = 2;
 int PrevColor = -1;
     
 int FadeSpeed = 50; //Speed that the light will fade in miliseconds
